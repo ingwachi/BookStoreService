@@ -35,6 +35,14 @@ public class BookService {
 
     }
 
+    @DeleteMapping(path ={"/{id}"})
+    public Book delete(@PathVariable("id") int id) {
+        Book book = repository.findById(id);
+        repository.deleteById(id);
+        return book;
+    }
+
+
 
 }
 
