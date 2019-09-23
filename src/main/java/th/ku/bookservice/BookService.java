@@ -1,9 +1,7 @@
 package th.ku.bookservice;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,6 +16,18 @@ public class BookService {
     public List<Book> findAll(){
         return repository.findAll();
     }
+
+    @GetMapping("/{id}")
+    public Book findById(@PathVariable int id) {
+        return repository.findById(id);
+    }
+
+    @PostMapping
+    public Book create(@RequestBody Book book){
+        repository.save(book);
+        return repository.findById(book.getId());
+    }
+
 
 }
 
